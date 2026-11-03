@@ -1,0 +1,90 @@
+header{
+    border: 5px solid black;
+}
+
+.main-title{
+    text-align: center;
+}
+
+body{
+    border: 5px solid blue;
+}
+
+main{
+    border: 5px solid red;
+}
+
+#compare-title{
+    text-align: center;
+}
+
+.container{
+    border: 5px solid orange;
+    display: flex;
+}
+
+.pokemon-side{
+    border: 5px solid purple;
+    flex: 1;
+    display: flex;
+}
+
+.pokemon-side:last-child{
+    flex-direction: row-reverse;
+}
+
+.search-container, .pokemon-img-info{
+    border: 5px solid green;
+    flex: 1;
+}
+
+.pokemon-img-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.pokemon-img-info img{
+    max-width: 100%;
+}
+
+.search-container label{
+    display: block;
+}
+
+#result{
+    border: 5px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stats-row{
+    display: flex;
+    gap: 15px;
+}
+
+#pkmn2-name, #pkmn1-name{
+    font-weight: bold;
+}
+
+
+/*classi da js*/
+.faster{
+    border: 5px solid green;
+    background-color: lightgreen;
+}
+
+.slower{
+    border: 5px solid red;
+    background-color: lightcoral;
+}
+
+.equal{
+    border: 5px solid yellow;
+    background-color: lightyellow;
+}
+
+
+
