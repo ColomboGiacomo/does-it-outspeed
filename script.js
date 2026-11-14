@@ -1,6 +1,7 @@
 const input1 = document.getElementById("pkmn1");
 const input2 = document.getElementById("pkmn2");
 
+//calcolo la velocità secondo la formula ufficiale dei giochi
 function calculateSpeed(baseSpeed, level, evs, ivs, nature) {
     const step1 = Math.floor((2*baseSpeed + ivs + Math.floor(evs / 4)) * level / 100); //Math.floor approssima per difetto (come nei giochi)
     const step2 = step1 + 5;
@@ -21,7 +22,14 @@ async function showPokemon(name, number){
     }
 
     const data = await response.json();
-    const baseSpeed = data.stats.find(s => s.stat.name === "speed").base_stat;
+    
+    //const baseSpeed = data.stats.find(s => s.stat.name === "speed").base_stat; //questo è come il for ma in una riga
+    let baseSpeed;
+    for(const s of data.stats){
+        if(s.stat.name === "speed"){
+            baseSpeed = s.base_stat;
+        }
+    }
 
     const level = Number(document.getElementById("level" + number).value);
     const evs = Number(document.getElementById("EVs" + number).value);
