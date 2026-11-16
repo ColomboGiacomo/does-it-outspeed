@@ -1,7 +1,7 @@
 const input1 = document.getElementById("pkmn1");
 const input2 = document.getElementById("pkmn2");
 
-//funzione che limita i valori numerici per livello, evs, ivs
+//limits the value of levels, evs, ivs
 function limitNumber(id){
     const field = document.getElementById(id);
 
