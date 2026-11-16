@@ -67,29 +67,29 @@
                             </optgroup>
                         </select>
 
-                        <label for="ability1">Ability:</label>
+                        <label for="ability1">Active speed ability:</label>
                         <select id="ability1">
                             <optgroup>
                                 <option value="1" selected>--</option>
                             </optgroup>  
                             <optgroup label="x2 SPEED ABILITY">
-                                <option value="2">Chlorophyll</option>
-                                <option value="2">Swift Swim</option>
-                                <option value="2">Sand Rush</option>
-                                <option value="2">Slush Rush</option>
-                                <option value="2">Surge Surfer</option>
-                                <option value="2"></option>
+                                <option value="2">Chlorophyll (sun)</option>
+                                <option value="2">Swift Swim (rain)</option>
+                                <option value="2">Sand Rush (sandstorm)</option>
+                                <option value="2">Slush Rush (snow)</option>
+                                <option value="2">Surge Surfer (electric terrain)</option>
+                                <option value="2">Unburden (item consumed)</option>
                             </optgroup>
                             <optgroup label="x1.5 SPEED ABILITY">
-                                <option value="1.5">Quick feet</option>
-                                <option value="1.5">protosynthesis</option>
-                                <option value="1.5">Quark drive</option>
+                                <option value="1.5">Quick feet (status condition)</option>
+                                <option value="1.5">protosynthesis (sun)</option>
+                                <option value="1.5">Quark drive (electric terrain)</option>
                             </optgroup>
                             <optgroup label="x0.5 SPEED ABILITY">
-                                <option value="0.5">Slow start</option>
+                                <option value="0.5">Slow start (only Regigigas)</option>
                             </optgroup>
                         </select>
-                        
+                        <p class="note"><strong>N.B. </strong>The ability is assumed to be active (e.g. sun for chlorophyll, rain for swift swim)</p>                 
 
                         <label for="EVs1">EVs:</label>
                         <input type="number" id="EVs1" min="0" max="252" value="0">
@@ -107,6 +107,7 @@
                             <p>Nature: <span id="pkmn1-nature">--</span></p>
                             <p>EVs: <span id="pkmn1-EVs">--</span></p>
                             <p>IVs: <span id="pkmn1-IVs">--</span></p>
+                            <p>Ability: <span id="pkmn1-ability">--</span></p>
                         </div>
                         
                         <img id="pkmn1-img" src="#" alt="First Pokemon" hidden>
@@ -162,28 +163,29 @@
                             </optgroup>
                         </select>
 
-                        <label for="ability2">Ability:</label>
+                        <label for="ability2">Active speed ability:</label>
                         <select id="ability2">
                             <optgroup>
                                 <option value="1" selected>--</option>
                             </optgroup>  
                             <optgroup label="x2 SPEED ABILITY">
-                                <option value="2">Chlorophyll</option>
-                                <option value="2">Swift Swim</option>
-                                <option value="2">Sand Rush</option>
-                                <option value="2">Slush Rush</option>
-                                <option value="2">Surge Surfer</option>
-                                <option value="2"></option>
+                                <option value="2">Chlorophyll (sun)</option>
+                                <option value="2">Swift Swim (rain)</option>
+                                <option value="2">Sand Rush (sandstorm)</option>
+                                <option value="2">Slush Rush (snow)</option>
+                                <option value="2">Surge Surfer (electric terrain)</option>
+                                <option value="2">Unburden (item consumed)</option>
                             </optgroup>
                             <optgroup label="x1.5 SPEED ABILITY">
-                                <option value="1.5">Quick feet</option>
-                                <option value="1.5">protosynthesis</option>
-                                <option value="1.5">Quark drive</option>
+                                <option value="1.5">Quick feet (status condition)</option>
+                                <option value="1.5">protosynthesis (sun)</option>
+                                <option value="1.5">Quark drive (electric terrain)</option>
                             </optgroup>
                             <optgroup label="x0.5 SPEED ABILITY">
-                                <option value="0.5">Slow start</option>
+                                <option value="0.5">Slow start (only Regigigas)</option>
                             </optgroup>
                         </select>
+                        <p class="note"><strong>N.B. </strong>The ability is assumed to be active (e.g. sun for chlorophyll, rain for swift swim)</p>
 
                         <label for="EVs2">EVs:</label>
                         <input type="number" id="EVs2" min="0" max="252" value="0">
@@ -201,6 +203,7 @@
                             <p>Nature: <span id="pkmn2-nature">--</span></p>
                             <p>EVs: <span id="pkmn2-EVs">--</span></p>
                             <p>IVs: <span id="pkmn2-IVs">--</span></p>
+                            <p>Ability: <span id="pkmn2-ability">--</span></p>
                         </div>
 
                         <img id="pkmn2-img" src="#" alt="Second Pokemon" hidden>

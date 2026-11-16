@@ -12,25 +12,30 @@ function limitNumber(id){
 
     //campo vuoto o non valido -> prende il minimo
     if(isNaN(value) || field.value === ""){
-        value = 50;
+        value = Number(field.defaultValue);
     }
-
     
     value = Math.min(Math.max(value, min), max); //blocco tra min e max
     value = Math.floor(value);  //niente decimali (se 30.8 -> 30)
-    
-    
+      
     field.value = value; //corregge quello che si vede nel campo
 
     return value;
 }
 
-
 // Calcola la velocità reale con la formula dei giochi
-function calculateSpeed(baseSpeed, level, evs, ivs, nature) {
+function calculateSpeed(baseSpeed, level, evs, ivs, nature, ability) {
+
+    console.log({baseSpeed, level, evs, ivs, nature, ability});
+    console.log("---------------------------------------------------------------");
+
     const step1 = Math.floor((2 * baseSpeed + ivs + Math.floor(evs / 4)) * level / 100);
     const step2 = step1 + 5;
-    return Math.floor(step2 * nature);
+    const step3 = Math.floor(step2 * nature);
+
+    const finalSpeed = Math.floor(step3 * ability);
+
+    return finalSpeed;
 }
 
 //search pokemon and write data in box
@@ -64,7 +69,11 @@ async function showPokemon(name, number){
     const nature = Number(natureSelect.value); //1.1, 0.9, 1
     const natureName = natureSelect.options[natureSelect.selectedIndex].text; //timid, calm, jolly ...
 
-    const speed = calculateSpeed(baseSpeed, level, evs, ivs, nature);
+    const abilitySelect = document.getElementById("ability" + number);
+    const ability = Number(abilitySelect.value);
+    const abilityName = abilitySelect.options[abilitySelect.selectedIndex].text;
+
+    const speed = calculateSpeed(baseSpeed, level, evs, ivs, nature, ability);
 
     document.getElementById("pkmn" + number + "-name").textContent = data.name;
     document.getElementById("pkmn" + number + "-level").textContent = level;
@@ -72,6 +81,7 @@ async function showPokemon(name, number){
     document.getElementById("pkmn" + number + "-EVs").textContent = evs;
     document.getElementById("pkmn" + number + "-IVs").textContent = ivs;
     document.getElementById("pkmn" + number + "-speed").textContent = speed;
+    document.getElementById("pkmn" + number + "-ability").textContent = abilityName;
 
     const img = document.getElementById("pkmn" + number + "-img");
     img.src = data.sprites.front_default;

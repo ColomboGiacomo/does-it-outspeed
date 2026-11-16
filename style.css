@@ -86,5 +86,11 @@ main{
     background-color: lightyellow;
 }
 
+.note{
+    font-size: 12px;
+    font-style: italic;
+    background-color: lightgoldenrodyellow;
+    margin-top: 4px;
+}
 
 
