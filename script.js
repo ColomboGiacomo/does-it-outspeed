@@ -1,9 +1,34 @@
 const input1 = document.getElementById("pkmn1");
 const input2 = document.getElementById("pkmn2");
 
-//calcolo la velocità secondo la formula ufficiale dei giochi
+//funzione che limita i valori numerici per livello, evs, ivs
+function limitNumber(id){
+    const field = document.getElementById(id);
+
+    const min = Number(field.min);
+    const max = Number(field.max);
+
+    let value = Number(field.value);
+
+    //campo vuoto o non valido -> prende il minimo
+    if(isNaN(value) || field.value === ""){
+        value = 50;
+    }
+
+    
+    value = Math.min(Math.max(value, min), max); //blocco tra min e max
+    value = Math.floor(value);  //niente decimali (se 30.8 -> 30)
+    
+    
+    field.value = value; //corregge quello che si vede nel campo
+
+    return value;
+}
+
+
+// Calcola la velocità reale con la formula dei giochi
 function calculateSpeed(baseSpeed, level, evs, ivs, nature) {
-    const step1 = Math.floor((2*baseSpeed + ivs + Math.floor(evs / 4)) * level / 100); //Math.floor approssima per difetto (come nei giochi)
+    const step1 = Math.floor((2 * baseSpeed + ivs + Math.floor(evs / 4)) * level / 100);
     const step2 = step1 + 5;
     return Math.floor(step2 * nature);
 }
@@ -31,9 +56,9 @@ async function showPokemon(name, number){
         }
     }
 
-    const level = Number(document.getElementById("level" + number).value);
-    const evs = Number(document.getElementById("EVs" + number).value);
-    const ivs = Number(document.getElementById("IVs" + number).value);
+    const level = limitNumber("level" + number);
+    const evs = limitNumber("EVs" + number);
+    const ivs = limitNumber("IVs" + number);
     
     const natureSelect = document.getElementById("nature" + number);
     const nature = Number(natureSelect.value); //1.1, 0.9, 1
