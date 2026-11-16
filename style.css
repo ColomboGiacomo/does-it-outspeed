@@ -93,4 +93,6 @@ main{
     margin-top: 4px;
 }
 
-
+.checkbox-container{
+    display: flex;
+}
