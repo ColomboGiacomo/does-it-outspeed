@@ -97,14 +97,21 @@ main{
     display: flex;
 }
 
-.status-badge {
-    background-color: #f8d030;
+.badge {
     color: black;
     font-size: 12px;
     font-weight: bold;
     padding: 2px 6px;
     border-radius: 4px;
     margin-left: 6px;
+}
+
+.badge-tailwind {
+    background-color: #30e1f8;
+}
+
+.badge-par{
+    background-color: #f8d030;
 }
 
 [hidden] {
