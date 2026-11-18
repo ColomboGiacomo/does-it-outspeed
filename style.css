@@ -96,3 +96,17 @@ main{
 .checkbox-container{
     display: flex;
 }
+
+.status-badge {
+    background-color: #f8d030;
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+}
+
+[hidden] {
+    display: none !important;
+}

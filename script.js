@@ -24,16 +24,17 @@ function limitNumber(id){
 }
 
 // Calcola la velocità reale con la formula dei giochi
-function calculateSpeed(baseSpeed, level, evs, ivs, nature, ability) {
+function calculateSpeed(baseSpeed, level, evs, ivs, nature, ability, par) {
 
-    console.log({baseSpeed, level, evs, ivs, nature, ability});
+    console.log({baseSpeed, level, evs, ivs, nature, ability, par});
     console.log("---------------------------------------------------------------");
 
     const step1 = Math.floor((2 * baseSpeed + ivs + Math.floor(evs / 4)) * level / 100);
     const step2 = step1 + 5;
-    const step3 = Math.floor(step2 * nature);
+    const step3 = Math.floor(step2 * nature); 
+    const step4 = Math.floor(step3 * ability);
 
-    const finalSpeed = Math.floor(step3 * ability);
+    const finalSpeed = Math.floor(step4 * par);
 
     return finalSpeed;
 }
@@ -48,6 +49,7 @@ async function showPokemon(name, number){
         document.getElementById("pkmn" + number + "-name").textContent = "";
         document.getElementById("pkmn" + number + "-speed").textContent = "--";
         document.getElementById("pkmn" + number + "-img").hidden = true;
+        document.getElementById("pkmn" + number + "-par").hidden = true;
         return;
     }
 
@@ -73,7 +75,15 @@ async function showPokemon(name, number){
     const ability = Number(abilitySelect.value);
     const abilityName = abilitySelect.options[abilitySelect.selectedIndex].text;
 
-    const speed = calculateSpeed(baseSpeed, level, evs, ivs, nature, ability);
+    const isParalyzed = document.getElementById("parpkmn"+number).checked;
+    const abilityId = abilitySelect.options[abilitySelect.selectedIndex].dataset.ability;
+
+    let par = 1;
+    if(isParalyzed && abilityId !== "quick-feet"){
+        par = 0.5;
+    }
+
+    const speed = calculateSpeed(baseSpeed, level, evs, ivs, nature, ability, par);
 
     document.getElementById("pkmn" + number + "-name").textContent = data.name;
     document.getElementById("pkmn" + number + "-level").textContent = level;
@@ -82,6 +92,8 @@ async function showPokemon(name, number){
     document.getElementById("pkmn" + number + "-IVs").textContent = ivs;
     document.getElementById("pkmn" + number + "-speed").textContent = speed;
     document.getElementById("pkmn" + number + "-ability").textContent = abilityName;
+    document.getElementById("pkmn" + number + "-par").hidden = !isParalyzed;
+
 
     const img = document.getElementById("pkmn" + number + "-img");
     img.src = data.sprites.front_default;
