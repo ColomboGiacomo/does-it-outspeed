@@ -10,7 +10,7 @@ function limitNumber(id){
 
     let value = Number(field.value);
 
-    //campo vuoto o non valido -> prende il minimo
+    //campo vuoto o non valido
     if(isNaN(value) || field.value === ""){
         value = Number(field.defaultValue);
     }
