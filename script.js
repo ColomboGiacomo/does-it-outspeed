@@ -24,16 +24,16 @@ function limitNumber(id){
 }
 
 // Calcola la velocità reale con la formula dei giochi
-function calculateSpeed(baseSpeed, level, evs, ivs, nature, ability, par, tailwind) {
+function calculateSpeed(baseSpeed, level, evs, ivs, nature, ability, par, tailwind, item) {
 
-    console.log({baseSpeed, level, evs, ivs, nature, ability, par, tailwind});
+    console.log({baseSpeed, level, evs, ivs, nature, ability, par, tailwind, item});
     console.log("---------------------------------------------------------------");
 
     const step1 = Math.floor((2 * baseSpeed + ivs + Math.floor(evs / 4)) * level / 100);
     const step2 = step1 + 5;
     const step3 = Math.floor(step2 * nature); 
     
-    const modifier = ability * tailwind;
+    const modifier = ability * tailwind * item;
 
     const step4 = Math.floor(step3 * modifier);
 
@@ -94,7 +94,10 @@ async function showPokemon(name, number){
         tailwind = 2;
     }
 
-    const speed = calculateSpeed(baseSpeed, level, evs, ivs, nature, ability, par, tailwind);
+    const itemRadio = document.querySelector('input[name="item' + number + '"]:checked');
+    const item = Number(itemRadio.value); 
+
+    const speed = calculateSpeed(baseSpeed, level, evs, ivs, nature, ability, par, tailwind, item);
 
     document.getElementById("pkmn" + number + "-name").textContent = data.name;
     document.getElementById("pkmn" + number + "-level").textContent = level;
