@@ -24,20 +24,21 @@ function limitNumber(id){
 }
 
 // Calcola la velocità reale con la formula dei giochi
-function calculateSpeed(baseSpeed, level, evs, ivs, nature, ability, par, tailwind, item) {
+function calculateSpeed(baseSpeed, level, evs, ivs, nature, ability, par, tailwind, item, stage) {
 
-    console.log({baseSpeed, level, evs, ivs, nature, ability, par, tailwind, item});
+    console.log({baseSpeed, level, evs, ivs, nature, ability, par, tailwind, item, stage});
     console.log("---------------------------------------------------------------");
 
     const step1 = Math.floor((2 * baseSpeed + ivs + Math.floor(evs / 4)) * level / 100);
     const step2 = step1 + 5;
     const step3 = Math.floor(step2 * nature); 
+    const step4 = applyStage(step3, stage);    
     
     const modifier = ability * tailwind * item;
 
-    const step4 = Math.floor(step3 * modifier);
+    const step5 = Math.floor(step4 * modifier);
 
-    const finalSpeed = Math.floor(step4 * par);
+    const finalSpeed = Math.floor(step5 * par);
 
     return finalSpeed;
 }
@@ -95,9 +96,12 @@ async function showPokemon(name, number){
     }
 
     const itemRadio = document.querySelector('input[name="item' + number + '"]:checked');
-    const item = Number(itemRadio.value); 
+    const item = Number(itemRadio.value);
+    const itemName = document.querySelector('label[for="' + itemRadio.id + '"]').textContent;
 
-    const speed = calculateSpeed(baseSpeed, level, evs, ivs, nature, ability, par, tailwind, item);
+    const stage = Number(document.getElementById("stage" + number).value);
+
+    const speed = calculateSpeed(baseSpeed, level, evs, ivs, nature, ability, par, tailwind, item, stage);
 
     document.getElementById("pkmn" + number + "-name").textContent = data.name;
     document.getElementById("pkmn" + number + "-level").textContent = level;
@@ -108,6 +112,8 @@ async function showPokemon(name, number){
     document.getElementById("pkmn" + number + "-ability").textContent = abilityName;
     document.getElementById("pkmn" + number + "-par").hidden = !isParalyzed;
     document.getElementById("pkmn" + number + "-tailwind").hidden = !isTailwind;
+    document.getElementById("pkmn" + number + "-item").textContent = itemName;
+    document.getElementById("pkmn" + number + "-stage").textContent = stage > 0 ? "+" + stage : stage;
 
 
     const img = document.getElementById("pkmn" + number + "-img");
@@ -155,6 +161,15 @@ function compareSpeed() {
         result.textContent = "Speed tie! Both have " + speed1 + " speed!";
     }
 
+}
+
+function applyStage(stat, stage){
+    if(stage >= 0){
+        return Math.floor(stat * (2 + stage) / 2);
+    }
+    else{
+        return Math.floor(stat * 2 / (2 - stage));
+    }
 }
 
 async function insertPokemonName() {

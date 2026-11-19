@@ -62,7 +62,9 @@ main{
 
 .stats-row{
     display: flex;
+    flex-wrap: wrap;
     gap: 15px;
+    justify-content: center;
 }
 
 #pkmn2-name, #pkmn1-name{
@@ -120,4 +122,6 @@ main{
 
 .radio-group{
     display: flex;
+    align-items: center;
+    gap: 4px;
 }
