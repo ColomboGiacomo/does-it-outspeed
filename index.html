@@ -17,8 +17,59 @@
     
         <main>
             <h2 id="compare-title">Enter the names of two Pokemon to see which one outspeeds the other!</h2>
-             <div class="container">
-                <div class="pokemon-side">
+        
+            <div class="battle-card">
+                <div class="results-row">
+                    <!-- POKEMON 1-->
+                    <div class="stats-panel">
+                        <p><span class="stat-label">Lv:</span> <span id="pkmn1-level">--</span></p>
+                        <p><span class="stat-label">Nature:</span> <span id="pkmn1-nature">--</span></p>
+                        <p><span class="stat-label">EVs:</span> <span id="pkmn1-EVs">--</span></p>
+                        <p><span class="stat-label">IVs:</span> <span id="pkmn1-IVs">--</span></p>
+                        <p><span class="stat-label">Ability:</span> <span id="pkmn1-ability">--</span></p>
+                        <p><span class="stat-label">Item:</span> <span id="pkmn1-item">--</span></p>
+                        <p><span class="stat-label">Speed stage:</span> <span id="pkmn1-stage">0</span></p>
+                    </div>
+
+                    <div class="pokemon-img-info" id="pkmn1-container">
+                        <p class="name-row">
+                            <span id="pkmn1-name">first pokemon name</span>
+                            <span id="pkmn1-par" class="badge badge-par" hidden>PAR</span>
+                            <span id="pkmn1-tailwind" class="badge badge-tailwind" hidden>Tailwind</span>
+                        </p>
+
+                    
+                        
+                        <img id="pkmn1-img" src="#" alt="First Pokemon" hidden>
+                        <p class="speed">Speed: <span id="pkmn1-speed">--</span></p>
+                    </div>
+
+                    <!--POKEMON 2-->
+                    <div class="pokemon-img-info" id="pkmn2-container">
+                        <p class="name-row">
+                            <span id="pkmn2-name">second pokemon name</span>
+                            <span id="pkmn2-par" class="badge badge-par" hidden>PAR</span>
+                            <span id="pkmn2-tailwind" class="badge badge-tailwind" hidden>Tailwind</span>
+                        </p>
+        
+                        <img id="pkmn2-img" src="#" alt="Second Pokemon" hidden>
+                        <p class="speed">Speed: <span id="pkmn2-speed">--</span></p>
+
+                    </div>
+                    <div class="stats-panel">
+                        <p><span class="stat-label">Lv:</span> <span id="pkmn2-level">--</span></p>
+                        <p><span class="stat-label">Nature:</span> <span id="pkmn2-nature">--</span></p>
+                        <p><span class="stat-label">EVs:</span> <span id="pkmn2-EVs">--</span></p>
+                        <p><span class="stat-label">IVs:</span> <span id="pkmn2-IVs">--</span></p>
+                        <p><span class="stat-label">Ability:</span> <span id="pkmn2-ability">--</span></p>
+                        <p><span class="stat-label">Item:</span> <span id="pkmn2-item">--</span></p>
+                        <p><span class="stat-label">Speed stage:</span> <span id="pkmn2-stage">0</span></p>
+                    </div>
+                </div>
+                <p id="result"></p>
+            </div>
+           
+            <div class="fields-row">
                     <div class="search-container">
                         <h3 class="pkmn1-title">First Pokemon</h3>
                         
@@ -88,7 +139,7 @@
                                 <option value="0.5">Slow start (only Regigigas)</option>
                             </optgroup>
                         </select>
-                        <p class="note"><strong>N.B. </strong>The ability is assumed to be active (e.g. sun for chlorophyll, rain for swift swim)</p>                 
+                        <p class="note"><strong>N.B. </strong>The ability is assumed to be active (e.g. sun is active for chlorophyll, rain for swift swim)</p>                 
 
                         <label for="EVs1">EVs:</label>
                         <input type="number" id="EVs1" min="0" max="252" value="0">
@@ -136,30 +187,7 @@
                         </div>
 
                     </div>
-                    
-                    <div class="pokemon-img-info" id="pkmn1-container">
-                        <p class="name-row">
-                            <span id="pkmn1-name">first pokemon name</span>
-                            <span id="pkmn1-par" class="badge badge-par" hidden>PAR</span>
-                            <span id="pkmn1-tailwind" class="badge badge-tailwind" hidden>Tailwind</span>
-                        </p>
 
-                        <div class="stats-row">
-                            <p>Lv: <span id="pkmn1-level">--</span></p>
-                            <p>Nature: <span id="pkmn1-nature">--</span></p>
-                            <p>EVs: <span id="pkmn1-EVs">--</span></p>
-                            <p>IVs: <span id="pkmn1-IVs">--</span></p>
-                            <p>Ability: <span id="pkmn1-ability">--</span></p>
-                            <p>Item: <span id="pkmn1-item">--</span></p>
-                            <p>Speed stage: <span id="pkmn1-stage">0</span></p>
-                        </div>
-                        
-                        <img id="pkmn1-img" src="#" alt="First Pokemon" hidden>
-                        <p class="speed">Speed: <span id="pkmn1-speed">--</span></p>
-                    </div>
-                </div>
-
-                <div class="pokemon-side">
                     <div class="search-container">
                         <h3 class="pkmn2-title">Second Pokemon</h3>
                         
@@ -229,7 +257,7 @@
                                 <option value="0.5">Slow start (only Regigigas)</option>
                             </optgroup>
                         </select>
-                        <p class="note"><strong>N.B. </strong>The ability is assumed to be active (e.g. sun for chlorophyll, rain for swift swim)</p>
+                        <p class="note"><strong>N.B. </strong>The ability is assumed to be active (e.g. sun is active for chlorophyll, rain for swift swim)</p>
 
                         <label for="EVs2">EVs:</label>
                         <input type="number" id="EVs2" min="0" max="252" value="0">
@@ -279,31 +307,7 @@
                         
                     </div>
 
-                    <div class="pokemon-img-info" id="pkmn2-container">
-                        <p class="name-row">
-                            <span id="pkmn2-name">second pokemon name</span>
-                            <span id="pkmn2-par" class="badge badge-par" hidden>PAR</span>
-                            <span id="pkmn2-tailwind" class="badge badge-tailwind" hidden>Tailwind</span>
-                        </p>
-
-                        <div class="stats-row">
-                            <p>Lv: <span id="pkmn2-level">--</span></p>
-                            <p>Nature: <span id="pkmn2-nature">--</span></p>
-                            <p>EVs: <span id="pkmn2-EVs">--</span></p>
-                            <p>IVs: <span id="pkmn2-IVs">--</span></p>
-                            <p>Ability: <span id="pkmn2-ability">--</span></p>
-                            <p>Item: <span id="pkmn2-item">--</span></p>
-                            <p>Speed stage: <span id="pkmn2-stage">0</span></p>
-
-                        </div>
-
-                        <img id="pkmn2-img" src="#" alt="Second Pokemon" hidden>
-                        <p class="speed">Speed: <span id="pkmn2-speed">--</span></p>
-                    </div>
                 </div>
-             </div>
-             
-             <p id="result"></p>
         </main>
 
         <script src="script.js"></script>

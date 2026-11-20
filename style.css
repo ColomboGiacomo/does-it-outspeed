@@ -46,33 +46,6 @@ main{
     padding: 24px 16px;
 }
 
-.container{
-    display: flex;
-    gap: 16px;
-}
-
-.pokemon-side{
-    flex: 1;
-    display: flex;
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-}
-
-.search-container{
-    padding: 20px;
-}
-
-.pokemon-side:last-child{
-    flex-direction: row-reverse;
-}
-
-.search-container, .pokemon-img-info{
-    flex: 1;
-}
-
 #compare-title{
     text-align: center;
 }
@@ -140,28 +113,8 @@ main{
     margin-top: 8px;
 }
 
-#result {
-    max-width: 600px;
-    margin: 24px auto 0;
-    padding: 16px 20px;
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-}
-
 #result:empty{
     display: none;
-}
-
-.stats-row{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
 }
 
 #pkmn2-name, #pkmn1-name{
@@ -203,7 +156,6 @@ main{
     color: var(--equal);
 }
 
-
 .note{
     font-size: 12px;
     font-style: italic;
@@ -238,17 +190,66 @@ main{
     gap: 4px;
 }
 
-/* Schermi medi (tablet): in ogni scheda, ricerca sopra e risultato sotto */
-@media (max-width: 1000px) {
-    .pokemon-side,
-    .pokemon-side:last-child {
-        flex-direction: column;
-    }
+.fields-row {
+    display: flex;
+    gap: 16px;
+    max-width: 900px;
+    margin: 24px auto 0;
 }
 
-/* Schermi piccoli (telefono): le due schede una sopra l'altra */
-@media (max-width: 640px) {
-    .container {
-        flex-direction: column;
-    }
+.search-container {
+    flex: 1;
+    padding: 20px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
 }
+
+/* La scheda della sfida */
+.battle-card {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+/* Le quattro colonne */
+.results-row {
+    display: flex;
+}
+
+.results-row > * {
+    flex: 1;
+    padding: 20px;
+}
+
+.results-row > * + * {
+    border-left: 1px solid var(--border);
+}
+
+/* Colonne delle statistiche */
+.stats-panel p {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+    font-size: 14px;
+}
+
+.stat-label {
+    color: var(--muted);
+}
+
+/* Il risultato, attaccato sotto */
+#result {
+    margin: 0;
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
