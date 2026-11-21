@@ -79,9 +79,13 @@ async function showPokemon(name, number){
     const abilitySelect = document.getElementById("ability" + number);
     const ability = Number(abilitySelect.value);
     const abilityName = abilitySelect.options[abilitySelect.selectedIndex].text;
+    const abilityId = abilitySelect.options[abilitySelect.selectedIndex].dataset.ability;
 
     const isParalyzed = document.getElementById("parpkmn"+number).checked;
-    const abilityId = abilitySelect.options[abilitySelect.selectedIndex].dataset.ability;
+    
+    if (abilityId === "unburden") {
+        document.getElementById("noitem" + number).checked = true;
+    }
 
     let par = 1;
     if(isParalyzed && abilityId !== "quick-feet"){
