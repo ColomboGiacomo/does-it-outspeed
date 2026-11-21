@@ -45,20 +45,27 @@ function calculateSpeed(baseSpeed, level, evs, ivs, nature, ability, par, tailwi
 
 //search pokemon and write data in box
 async function showPokemon(name, number){
-    if(name === "") return;
+    if(name === ""){
+        document.getElementById("pkmn" + number + "-error").hidden = true;
+        return;
+    } 
     
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + name);
+    let response;
+    try {
+        response = await fetch("https://pokeapi.co/api/v2/pokemon/" + name);
+    } catch (error) {
+        showPokemonError(number, "Connection error");
+        return;
+    }
 
     if(!response.ok){
-        document.getElementById("pkmn" + number + "-name").textContent = "";
-        document.getElementById("pkmn" + number + "-speed").textContent = "--";
-        document.getElementById("pkmn" + number + "-img").hidden = true;
-        document.getElementById("pkmn" + number + "-par").hidden = true;
-        document.getElementById("pkmn" + number + "-tailwind").hidden = true;
+        showPokemonError(number, "Pokemon not found");
         return;
     }
 
     const data = await response.json();
+
+    document.getElementById("pkmn" + number + "-error").hidden = true;
     
     //const baseSpeed = data.stats.find(s => s.stat.name === "speed").base_stat; //questo è come il for ma in una riga
     let baseSpeed;
@@ -198,6 +205,18 @@ async function insertPokemonName() {
     await showPokemon(pkmn2, 2);
 
     compareSpeed();
+}
+
+function showPokemonError(number, message){
+    const errorElement = document.getElementById("pkmn" + number + "-error");
+    errorElement.textContent = message;
+    errorElement.hidden = false;
+
+    document.getElementById("pkmn" + number + "-name").textContent = "--";
+    document.getElementById("pkmn" + number + "-speed").textContent = "--";
+    document.getElementById("pkmn" + number + "-img").hidden = true;
+    document.getElementById("pkmn" + number + "-par").hidden = true;
+    document.getElementById("pkmn" + number + "-tailwind").hidden = true;
 }
 
 const fields = document.querySelectorAll(".search-container input, .search-container select");

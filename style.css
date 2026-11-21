@@ -270,3 +270,8 @@ main{
     flex: 2;
 }
 
+.error-text {
+    color: var(--slower);
+    font-weight: bold;
+    margin-left: 6px;
+}
