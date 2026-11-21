@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- usa la larghezza del dispositivo (responsive) -->
 
-    <title>Does It Outspeed?</title>
+    <title>Does It Outspeed? | Pokemon Speed Calculator</title>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
@@ -136,6 +136,7 @@
             </div>
           </div>
 
+          <!-- Riga 2: natura + abilità -->
           <div class="field-row">
             <div class="field">
               <label for="nature1">Nature:</label>
@@ -282,127 +283,164 @@
         <div class="search-container">
           <h3 class="pkmn2-title">Second Pokemon</h3>
 
-          <label for="pkmn2">Name of the second Pokemon:</label>
-          <input
-            type="text"
-            id="pkmn2"
-            list="pokemon-list"
-            placeholder="Enter the second Pokemon"
-          />
-
-          <label for="level2">Level:</label>
-          <input type="number" id="level2" min="1" max="100" value="50" />
-
-          <label for="nature2">Nature:</label>
-          <select id="nature2">
-            <optgroup>
-              <option value="1" selected>--</option>
-            </optgroup>
-            <optgroup label="PLUS SPEED">
-              <option value="1.1">Timid</option>
-              <option value="1.1">Hasty</option>
-              <option value="1.1">Jolly</option>
-              <option value="1.1">Naive</option>
-            </optgroup>
-            <optgroup label="NEUTRAL">
-              <option value="1">Hardy</option>
-              <option value="1">Docile</option>
-              <option value="1">Serious</option>
-              <option value="1">Bashful</option>
-              <option value="1">Quirky</option>
-              <option value="1">Lonely</option>
-              <option value="1">Adamant</option>
-              <option value="1">Naughty</option>
-              <option value="1">Bold</option>
-              <option value="1">Impish</option>
-              <option value="1">Lax</option>
-              <option value="1">Modest</option>
-              <option value="1">Mild</option>
-              <option value="1">Rash</option>
-              <option value="1">Calm</option>
-              <option value="1">Gentle</option>
-              <option value="1">Careful</option>
-            </optgroup>
-            <optgroup label="MINUS SPEED">
-              <option value="0.9">Brave</option>
-              <option value="0.9">Relaxed</option>
-              <option value="0.9">Quiet</option>
-              <option value="0.9">Sassy</option>
-            </optgroup>
-          </select>
-
-          <label for="ability2">Speed ability:</label>
-          <select id="ability2">
-            <optgroup>
-              <option value="1" selected>--</option>
-            </optgroup>
-            <optgroup label="x2 SPEED ABILITY">
-              <option value="2">Chlorophyll (sun)</option>
-              <option value="2">Swift Swim (rain)</option>
-              <option value="2">Sand Rush (sandstorm)</option>
-              <option value="2">Slush Rush (snow)</option>
-              <option value="2">Surge Surfer (electric terrain)</option>
-              <option value="2">Unburden (item consumed)</option>
-            </optgroup>
-            <optgroup label="x1.5 SPEED ABILITY">
-              <option value="1.5" data-ability="quick-feet">
-                Quick feet (status condition)
-              </option>
-              <option value="1.5">protosynthesis (sun)</option>
-              <option value="1.5">Quark drive (electric terrain)</option>
-            </optgroup>
-            <optgroup label="x0.5 SPEED ABILITY">
-              <option value="0.5">Slow start (only Regigigas)</option>
-            </optgroup>
-          </select>
-          <p class="note">
-            <strong>N.B. </strong>The ability is assumed to be active (e.g. sun
-            is active for chlorophyll, rain for swift swim)
-          </p>
-
-          <label for="EVs2">EVs:</label>
-          <input type="number" id="EVs2" min="0" max="252" value="0" />
-
-          <label for="IVs2">IVs:</label>
-          <input type="number" id="IVs2" min="0" max="31" value="31" />
-
-          <label for="stage2">Speed stage:</label>
-          <select id="stage2">
-            <option value="6">+6 (×4)</option>
-            <option value="5">+5 (×3.5)</option>
-            <option value="4">+4 (×3)</option>
-            <option value="3">+3 (×2.5)</option>
-            <option value="2">+2 (×2)</option>
-            <option value="1">+1 (×1.5)</option>
-            <option value="0" selected>0</option>
-            <option value="-1">−1 (×0.67)</option>
-            <option value="-2">−2 (×0.5)</option>
-            <option value="-3">−3 (×0.4)</option>
-            <option value="-4">−4 (×0.33)</option>
-            <option value="-5">−5 (×0.29)</option>
-            <option value="-6">−6 (×0.25)</option>
-          </select>
-
-          <div class="checkbox-container">
-            <input type="checkbox" id="parpkmn2" name="parpkmn2" />
-            <label for="parpkmn2">Paralysis</label>
+          <!-- Riga 1: nome + livello -->
+          <div class="field-row">
+            <div class="field field-wide">
+              <label for="pkmn2">Name:</label>
+              <input
+                type="text"
+                id="pkmn2"
+                list="pokemon-list"
+                placeholder="Enter the second Pokemon"
+              />
+            </div>
+            <div class="field">
+              <label for="level2">Level:</label>
+              <input type="number" id="level2" min="1" max="100" value="50" />
+            </div>
           </div>
 
-          <div class="checkbox-container">
-            <input type="checkbox" id="tailwindpkmn2" name="tailwindpkmn2" />
-            <label for="tailwindpkmn2">Tailwind</label>
+          <!-- Riga 2: natura + abilità -->
+          <div class="field-row">
+            <div class="field">
+              <label for="nature2">Nature:</label>
+              <select id="nature2">
+                <optgroup>
+                  <option value="1" selected>--</option>
+                </optgroup>
+                <optgroup label="PLUS SPEED">
+                  <option value="1.1">Timid</option>
+                  <option value="1.1">Hasty</option>
+                  <option value="1.1">Jolly</option>
+                  <option value="1.1">Naive</option>
+                </optgroup>
+                <optgroup label="NEUTRAL">
+                  <option value="1">Hardy</option>
+                  <option value="1">Docile</option>
+                  <option value="1">Serious</option>
+                  <option value="1">Bashful</option>
+                  <option value="1">Quirky</option>
+                  <option value="1">Lonely</option>
+                  <option value="1">Adamant</option>
+                  <option value="1">Naughty</option>
+                  <option value="1">Bold</option>
+                  <option value="1">Impish</option>
+                  <option value="1">Lax</option>
+                  <option value="1">Modest</option>
+                  <option value="1">Mild</option>
+                  <option value="1">Rash</option>
+                  <option value="1">Calm</option>
+                  <option value="1">Gentle</option>
+                  <option value="1">Careful</option>
+                </optgroup>
+                <optgroup label="MINUS SPEED">
+                  <option value="0.9">Brave</option>
+                  <option value="0.9">Relaxed</option>
+                  <option value="0.9">Quiet</option>
+                  <option value="0.9">Sassy</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="ability2">Speed ability:</label>
+              <select id="ability2">
+                <optgroup>
+                  <option value="1" selected>--</option>
+                </optgroup>
+                <optgroup label="x2 SPEED ABILITY">
+                  <option value="2">Chlorophyll (sun)</option>
+                  <option value="2">Swift Swim (rain)</option>
+                  <option value="2">Sand Rush (sandstorm)</option>
+                  <option value="2">Slush Rush (snow)</option>
+                  <option value="2">Surge Surfer (electric terrain)</option>
+                  <option value="2">Unburden (item consumed)</option>
+                </optgroup>
+                <optgroup label="x1.5 SPEED ABILITY">
+                  <option value="1.5" data-ability="quick-feet">
+                    Quick feet (status condition)
+                  </option>
+                  <option value="1.5">protosynthesis (sun)</option>
+                  <option value="1.5">Quark drive (electric terrain)</option>
+                </optgroup>
+                <optgroup label="x0.5 SPEED ABILITY">
+                  <option value="0.5">Slow start (only Regigigas)</option>
+                </optgroup>
+              </select>
+              <p class="note">
+                <strong>N.B. </strong>The ability is assumed to be active (e.g.
+                sun is active for chlorophyll, rain for swift swim)
+              </p>
+            </div>
           </div>
 
-          <label>Item:</label>
-          <div class="radio-group">
-            <input type="radio" id="noitem2" name="item2" value="1" checked />
-            <label for="noitem2">None</label>
+          <!-- Riga 3: EV + IV + stage -->
+          <div class="field-row">
+            <div class="field">
+              <label for="EVs2">EVs:</label>
+              <input type="number" id="EVs2" min="0" max="252" value="0" />
+            </div>
 
-            <input type="radio" id="scarf2" name="item2" value="1.5" />
-            <label for="scarf2">Choice Scarf</label>
+            <div class="field">
+              <label for="IVs2">IVs:</label>
+              <input type="number" id="IVs2" min="0" max="31" value="31" />
+            </div>
 
-            <input type="radio" id="ironball2" name="item2" value="0.5" />
-            <label for="ironball2">Iron Ball</label>
+            <div class="field">
+              <label for="stage2">Speed stage:</label>
+              <select id="stage2">
+                <option value="6">+6 (×4)</option>
+                <option value="5">+5 (×3.5)</option>
+                <option value="4">+4 (×3)</option>
+                <option value="3">+3 (×2.5)</option>
+                <option value="2">+2 (×2)</option>
+                <option value="1">+1 (×1.5)</option>
+                <option value="0" selected>0</option>
+                <option value="-1">−1 (×0.67)</option>
+                <option value="-2">−2 (×0.5)</option>
+                <option value="-3">−3 (×0.4)</option>
+                <option value="-4">−4 (×0.33)</option>
+                <option value="-5">−5 (×0.29)</option>
+                <option value="-6">−6 (×0.25)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Riga 4: status + buff -->
+          <div class="field-row">
+            <div class="field">
+              <p class="group-title">Status:</p>
+              <div class="checkbox-container">
+                <input type="checkbox" id="parpkmn2" name="parpkmn2" />
+                <label for="parpkmn2">Paralysis</label>
+              </div>
+            </div>
+            <div class="field">
+              <p class="group-title">Buff:</p>
+              <div class="checkbox-container">
+                <input
+                  type="checkbox"
+                  id="tailwindpkmn2"
+                  name="tailwindpkmn2"
+                />
+                <label for="tailwindpkmn2">Tailwind</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Riga 5: strumento -->
+          <div class="field">
+            <p class="group-title">Item:</p>
+            <div class="radio-group">
+              <input type="radio" id="noitem2" name="item2" value="1" checked />
+              <label for="noitem2">None</label>
+
+              <input type="radio" id="scarf2" name="item2" value="1.5" />
+              <label for="scarf2">Choice Scarf</label>
+
+              <input type="radio" id="ironball2" name="item2" value="0.5" />
+              <label for="ironball2">Iron Ball</label>
+            </div>
           </div>
         </div>
       </div>
