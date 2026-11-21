@@ -122,6 +122,20 @@ async function showPokemon(name, number){
     img.hidden = false;
 }
 
+// Carica i nomi di tutti i Pokémon nei suggerimenti
+async function loadPokemonList() {
+    const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=2000");
+    const data = await response.json();
+
+    const datalist = document.getElementById("pokemon-list");
+
+    for (const pokemon of data.results) {
+        const option = document.createElement("option");
+        option.value = pokemon.name;
+        datalist.appendChild(option);
+    }
+}
+
 function compareSpeed() {
     //estraggo i valori di velocità e nomi dei Pokémon
     const speed1 = Number(document.getElementById("pkmn1-speed").textContent);
@@ -187,4 +201,5 @@ const fields = document.querySelectorAll(".search-container input, .search-conta
 fields.forEach(field => {
     field.addEventListener("change", insertPokemonName);
 });
-  
+
+loadPokemonList();
