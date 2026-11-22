@@ -249,17 +249,23 @@ function compareSpeed() {
  * loads the name of all pokemon from pokeAPI into the <datalist>, so they appear as suggestions
  */
 async function loadPokemonList() {
-    //limt = 2000, without it, pokeAPI returns only the first 20 pokemon
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=2000");
-    const data = await response.json();
+    
+    try{
+        //limt = 2000, without it, pokeAPI returns only the first 20 pokemon
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=2000");
+        const data = await response.json();
 
-    const datalist = document.getElementById("pokemon-list");
+        const datalist = document.getElementById("pokemon-list");
 
-    for (const pokemon of data.results) {
-        const option = document.createElement("option");
-        option.value = pokemon.name;
-        datalist.appendChild(option);
-    }
+        for (const pokemon of data.results) {
+            const option = document.createElement("option");
+            option.value = pokemon.name;
+            datalist.appendChild(option);
+        }
+    } catch (error){
+        console.warn("Could not load the pokemon list:", error);
+    } 
+
 }
 
 /**
