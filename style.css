@@ -275,3 +275,49 @@ main{
     font-weight: bold;
     margin-left: 6px;
 }
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+@media (max-width: 700px) {
+
+    /* La scheda della sfida diventa una griglia 2x2 */
+    .results-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "pkmn1  pkmn2"
+            "stats1 stats2";
+    }
+
+    /* Ogni colonna va nella sua area */
+    .results-row > :first-child { 
+        grid-area: stats1; 
+    }
+    
+    #pkmn1-container { 
+        grid-area: pkmn1; 
+    }
+    
+    #pkmn2-container { 
+        grid-area: pkmn2; 
+    }
+
+    .results-row > :last-child { 
+        grid-area: stats2; 
+    }
+
+    /* Linee di separazione */
+    #pkmn1-container {
+        border-left: none;
+    }
+
+    .stats-panel {
+        border-top: 1px solid var(--border);
+    }
+
+    /* Le due schede dei campi, una sotto l'altra */
+    .fields-row {
+        flex-direction: column;
+    }
+}
