@@ -296,11 +296,14 @@ main{
     }
     
     #pkmn1-container { 
-        grid-area: pkmn1; 
+        grid-area: pkmn1;
+        border-left: none;
+        border-top-left-radius: calc(var(--radius) - 1px);
     }
     
     #pkmn2-container { 
-        grid-area: pkmn2; 
+        grid-area: pkmn2;
+        border-top-right-radius: calc(var(--radius) - 1px);
     }
 
     .results-row > :last-child { 
