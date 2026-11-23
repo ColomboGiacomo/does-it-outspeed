@@ -1,3 +1,5 @@
+//pokemon already downloaded, to avoid calling pokeAPI every time some data change
+const pokemonCache = new Map();
 
 //name fields of the two pokemon
 const input1 = document.getElementById("pkmn1");
@@ -7,16 +9,16 @@ const input2 = document.getElementById("pkmn2");
 const fields = document.querySelectorAll(".search-container input, .search-container select");
 
 /**
- * calcualtes the actual in--battle speed of a pokemon.
+ * calculates the actual in-battle speed of a pokemon.
  * order and rounding follow the games: stats (with nature) -> speed stage -> modifiers -> paralysis
  * @param {number} baseSpeed - base speed stat from pokeAPI
  * @param {number} level - level of the pokemon (1-100)
  * @param {number} evs - speed EVs (0-252)
  * @param {number} ivs - speed IVs (0-31)
  * @param {number} nature - nature multiplier (1.1, 1, 0.9)
- * @param {number} ability - ability multiplier (2, 1.5, 0.5)
+ * @param {number} ability - ability multiplier (2, 1.5, 1, 0.5)
  * @param {number} par - paralysis multiplier (0.5, 1)
- * @param {number} tailwind - tailwind multiplier (1.5, 1, 0.5)
+ * @param {number} tailwind - tailwind multiplier (2, 1)
  * @param {number} item - item multiplier (1.5, 1, 0.5)
  * @param {number} stage - speed stage (-6 to +6)
  * @returns {number} the final speed
@@ -86,7 +88,7 @@ function limitNumber(id){
 /**
  * shows an error next to the "name:" label and clears the pokemon's box
  * @param {number} number - 1 or 2 (which pokemon) 
- * @param {*} message - the error message to show
+ * @param {string} message - the error message to show
  */
 function showPokemonError(number, message){
     const errorElement = document.getElementById("pkmn" + number + "-error");
@@ -102,8 +104,8 @@ function showPokemonError(number, message){
 
 /**
  * fetches a pokemon from pokeAPI, reads the user's settings, calculates the speed and writes everything in the pokemon box
- * @param {string} name - pokemon name (lowecase) 
- * @param {*} number - 1 or 2 (wich pokemon)
+ * @param {string} name - pokemon name (lowercase) 
+ * @param {number} number - 1 or 2 (which pokemon)
  */
 async function showPokemon(name, number){
     //empty field: nothing to search, hide any old error
@@ -112,23 +114,31 @@ async function showPokemon(name, number){
         return;
     } 
     
+    let data = pokemonCache.get(name);
+
     //fetch the pokemon
-    let response;
-    try {
-        response = await fetch("https://pokeapi.co/api/v2/pokemon/" + name);
-    } catch (error) {
-        //no answer from pokeAPI --> connection error
-        showPokemonError(number, "Connection error");
-        return;
-    }
+    if(!data){
+        let response;
+        try {
+            response = await fetch("https://pokeapi.co/api/v2/pokemon/" + name);
+        } catch (error) {
+            //no answer from pokeAPI --> connection error
+            showPokemonError(number, "Connection error");
+            return;
+        }
 
-    //pokeAPI answered with an error --> pokemon not found
-    if(!response.ok){
-        showPokemonError(number, "Pokemon not found");
-        return;
-    }
+        //pokeAPI answered with an error --> pokemon not found
+        if(!response.ok){
+            showPokemonError(number, "Pokemon not found");
+            return;
+        }
 
-    const data = await response.json();
+        
+        data = await response.json();
+
+        //save pokemons, so the next changes don't call pokeAPI again
+        pokemonCache.set(name, data);
+    }
 
     document.getElementById("pkmn" + number + "-error").hidden = true;
     
@@ -202,10 +212,10 @@ async function showPokemon(name, number){
 }
 
 /**
- * compares the two speed of the two pokemons, highlight the faster and writes the result
+ * compares the speeds of the two pokemons, highlight the faster and writes the result
  */
 function compareSpeed() {
-    //speed are read from teh page, so they are text: Number() converts them
+    //speed are read from the page, so they are text: Number() converts them
     const speed1 = Number(document.getElementById("pkmn1-speed").textContent);
     const speed2 = Number(document.getElementById("pkmn2-speed").textContent);
 
@@ -251,7 +261,7 @@ function compareSpeed() {
 async function loadPokemonList() {
     
     try{
-        //limt = 2000, without it, pokeAPI returns only the first 20 pokemon
+        //limit = 2000, without it, pokeAPI returns only the first 20 pokemon
         const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=2000");
         const data = await response.json();
 
@@ -269,7 +279,7 @@ async function loadPokemonList() {
 }
 
 /**
- * updates poth pokemon and then compares them. Called everytime a field changes
+ * updates both pokemon and then compares them. Called everytime a field changes
  */
 async function insertPokemonName() {
     const pkmn1 = input1.value.trim().toLowerCase();
