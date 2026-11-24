@@ -4,8 +4,6 @@ Does It Outspeed is a web application that compares the Speed stat of two Pokém
 
 **Live demo:** [does-it-outspeed.vercel.app](https://does-it-outspeed.vercel.app/)
 
-![Screenshot of Does It Outspeed?](screenshot.png)
-
 ## Features
 
 - Side-by-side comparison of two Pokémon, with their stats on the sides
