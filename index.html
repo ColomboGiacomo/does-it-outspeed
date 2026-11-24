@@ -27,8 +27,14 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Does It Outspeed? | Pokémon Speed Calculator" />
     <meta property="og:description" content="Compare two Pokémon and find out which one moves first." />
-    <meta property="og:url" content="https://INDIRIZZO-DEL-SITO/" />
+    <meta property="og:url" content="https://does-it-outspeed.vercel.app/" />
     <meta property="og:image" content="https://INDIRIZZO-DEL-SITO/og-image.png" />
+
+    <!-- Vercel Web Analytics -->
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
@@ -144,7 +150,7 @@
           <!-- Riga 1: nome + livello -->
           <div class="field-row">
             <div class="field field-wide">
-              <label for="pkmn1">Name: <span id="pkmn1-error" class="error-text" hudden></span></label>
+              <label for="pkmn1">Name: <span id="pkmn1-error" class="error-text" hidden></span></label>
               <input
                 type="text"
                 id="pkmn1"
@@ -308,7 +314,7 @@
           <!-- Riga 1: nome + livello -->
           <div class="field-row">
             <div class="field field-wide">
-              <label for="pkmn2">Name: <span id="pkmn2-error" class="error-text" hudden></span></label>
+              <label for="pkmn2">Name: <span id="pkmn2-error" class="error-text" hidden></span></label>
               <input
                 type="text"
                 id="pkmn2"
