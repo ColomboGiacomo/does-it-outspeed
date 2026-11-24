@@ -13,6 +13,7 @@
 
     /* Colore principale del sito */
     --accent: #3b6ef5;
+    --accent-text: #2563eb;
 
     /* Colori del risultato */
     --faster: #2e9e5b;
@@ -340,5 +341,5 @@ footer p {
 }
 
 footer a {
-    color: var(--accent);
+    color: var(--accent-text);
 }
